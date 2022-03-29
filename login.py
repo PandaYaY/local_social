@@ -59,6 +59,8 @@ def help(menu, deep=0):
         print(chr + item)
         if menu[item]:
             help(menu[item], deep+4)
+    # print(f'Press any key to return...')
+    # msvcrt.getch().decode()
     return False
 
 
@@ -282,7 +284,7 @@ def login_true(data):
     # print(data)
 
     print(f'Здарова, {data["info"]["name"]}!')
-    number = input('Цифорка: ')
+    number = input('Цифорка: ').lower()
 
     spisok = {
         '1': lambda: info(data),
@@ -291,7 +293,6 @@ def login_true(data):
         '4': lambda: delete_accaunt(data),
         '5': lambda: 'exit',
         'help': lambda: help(menu),
-        'Help': lambda: help(menu),
     }
 
     return spisok.get(number, lambda: False)()
@@ -312,5 +313,3 @@ if __name__ == '__main__':
             login_state = login_true(state)  # залогинен
             if login_state == 'exit':
                 break
-# a = {}
-# games(a)
